@@ -36,7 +36,7 @@ This is an application that will help large groups of people "Iron Out" the deta
 
 ### Sample Data
 
-[
+`[
 {
 "latitude": "80.1918° W",
 "longitude": "25.7617° N",
@@ -44,6 +44,6 @@ This is an application that will help large groups of people "Iron Out" the deta
 "restaurant": "KOMODO",
 "category": "Asian"
 }
-]
+]`
 
 ### Mongoose Schema

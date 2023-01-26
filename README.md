@@ -34,6 +34,8 @@ This is an application that will help large groups of people "Iron Out" the deta
 
 ## Data Sample and Schema
 
+Not sure what to write here
+
 ### Sample Data
 
 <script src="https://gist.github.com/KelliLil/46530061baca4108407c34b0fd00a31b.js"></script>

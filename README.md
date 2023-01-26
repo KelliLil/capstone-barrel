@@ -24,13 +24,26 @@ This is an application that will help large groups of people "Iron Out" the deta
 ## Secondary Features (Stretch)
 
 - As a user, I want to be able to hone in on different attractions in specified location
+- As a user, I want to be able to specify what attractions will be needed
+- As a user, I want to be able to select if there are activities for children/adult
 
 ## Bonus Features (Super Stretch)
 
-- As a user, I want to be able to eventually use this application to plan a trip completely tailored to what my group needs, essentially this app will replace a travel agent entirely.
+- As a user, I want to be able to expand the scope to the entire world.
+- As a user, I want to be able to book hotel and flight accommodations.
 
 ## Data Sample and Schema
 
 ### Sample Data
 
-#### Class Collection
+[
+{
+"latitude": "80.1918° W",
+"longitude": "25.7617° N",
+"city": "Miami, Florida",
+"restaurant": "KOMODO",
+"category": "Asian"
+}
+]
+
+### Mongoose Schema

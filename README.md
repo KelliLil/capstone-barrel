@@ -36,14 +36,6 @@ This is an application that will help large groups of people "Iron Out" the deta
 
 ### Sample Data
 
-`[
-{
-"latitude": "80.1918° W",
-"longitude": "25.7617° N",
-"city": "Miami, Florida",
-"restaurant": "KOMODO",
-"category": "Asian"
-}
-]`
+<script src="https://gist.github.com/KelliLil/46530061baca4108407c34b0fd00a31b.js"></script>
 
 ### Mongoose Schema

@@ -65,19 +65,29 @@ I'musing a 3rd party API for this application. The data is already set up to be 
 ### Mongoose Schema
 
 ```json
-const NewGroupSchema = new mongoose.Schema ({
-  date: { type: String, required: true},
-  group name: { type: String, required: true}
+const GroupSchema = new mongoose.Schema ({
+ date: { type: String, required: true},
+ group name: { type: String, required: true},
 });
 
 const UserSchema = new mongoose.Schema ({
-  name: { type: String, required: true },
-  email: { type: String, required: true },
-  password: { type: String, required: true },
+ name: { type: String, required: true },
+ email: { type: String, required: true },
+ password: { type: String, required: true },
+ group: [GroupSchema]
 });
 
 const AdminSchema = new mongoose.Schema ({
-  IsAdmin: { type: Boolean },
-})
+ IsAdmin: { type: Boolean },
+ group: [GroupSchema]
+});
 
 ```
+
+## MVP API Endpoints
+
+- `POST /api/user/login` - Login a user
+- `POST /api/user/logout` - Logout a user
+- `GET /api/user/group` - Get all users for group (admin only)
+- `PUT /api/user/:userId` - Update a user (user update own, admin can make user an admin)
+- `DELETE /api/user/:userId` - Delete user from group

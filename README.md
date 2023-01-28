@@ -2,19 +2,23 @@
 
 ## Overview
 
-This is an application that will help large groups of people "Iron Out" the details of a trip. Whether this trip be a family reunion, destination wedding, college friends reuniting for an adventure, etc.
+This idea started with just a family vacation. My cousin and her husband will be turning 40 next year and they want to do have a big celebration at a destination where the whole extended family can have a good time. When you have a large group, it's very difficult to appease everyone. But it doesn't have to be that way.
+
+The idea of Iron Out is an application that will essentially get rid of the need for a travel agent of sorts. One of the biggest things large groups of people have difficulty with is decided what they going to eat. Iron Out will send the alerted members of that specific group a list of cuisine types around the destination area and send it as a voting feature. When voting is completed, the administrator can see the tally of votes and narrow down the scope of options to a smaller data collection taking the top 2 choices and then matching those 2 picks with any restaurant that matches within a certain radius.
 
 ## Primary Features (MVP)
 
-- As a user, I want to select a specific region in the country to go to.
-- As a user, I want to be able to hone in on restaurants of specific destination
-- As a user, I want to filter through the categories of food available.
-- As a user, I want to be able to decide where to eat by consensus of group
+- As a user, I want to be able to vote on what cuisine I want to eat.
+- As a user, I want to see the options of the top 2 winning votes in a certain radius.
+- As a user, I want to filter through the list of restaurants according to cost.
+- As a user, I want to be able to filter if an establishment is kid-friendly.
+- As a user, I want to be able to engage in discussion with the group regarding the final choice of the restaurant.
 
 ---
 
-- As an administrator, I want to be able to add a member to itinerary.
-- As an administrator, I want to be able to delete person from itinerary.
+- As an administrator, I want to be able to participate as a user.
+- As an administrator, I want to be able to add a member to group.
+- As an administrator, I want to be able to delete person from group.
 
 ---
 
@@ -23,9 +27,9 @@ This is an application that will help large groups of people "Iron Out" the deta
 
 ## Secondary Features (Stretch)
 
-- As a user, I want to be able to hone in on different attractions in specified location
-- As a user, I want to be able to specify what attractions will be needed
-- As a user, I want to be able to select if there are activities for children/adult
+- As a user, I want to be able to narrow the scope by just regions of the country if a specific location is not set.
+- As a user, I want to be able to check attractions in the region chosen to map all the viable options of activities.
+- As a user, I want to be able to be able to sort through types of activities in the area tailored to specific interests of the group.
 
 ## Bonus Features (Super Stretch)
 
@@ -34,24 +38,46 @@ This is an application that will help large groups of people "Iron Out" the deta
 
 ## Data Sample and Schema
 
-Not sure what to write here
-
 ### Sample Data
+
+I'musing a 3rd party API for this application. The data is already set up to be read this way as the tech is used in other facets of travel applications.
+
+#### Groups
 
 ```json
 [
   {
-    "latitude": "80.1918° W",
-    "longitude": "25.7617° N",
-    "city": "Miami, Florida",
-    "restaurant": "KOMODO",
-    "category": "Asian"
+    "group id": 1,
+    "group name": "Melissa's 40th",
+    "lat": 343.33,
+    "long": 333.22,
+    "radius": 20,
+    "votes": {
+      "glutenFree": 3,
+      "vegetarian": 2
+    },
+    "isOpen": true,
+    "results": []
   }
 ]
 ```
 
 ### Mongoose Schema
 
-```
+```json
+const NewGroupSchema = new mongoose.Schema ({
+  date: { type: String, required: true},
+  group name: { type: String, required: true}
+});
+
+const UserSchema = new mongoose.Schema ({
+  name: { type: String, required: true },
+  email: { type: String, required: true },
+  password: { type: String, required: true },
+});
+
+const AdminSchema = new mongoose.Schema ({
+  IsAdmin: { type: Boolean },
+})
 
 ```

@@ -65,26 +65,28 @@ I'm using a 3rd party API for this application. The data is already set up to be
 ### Mongoose Schema
 
 ```json
+
+const VoteSchema = new mongoose.Schema({
+  cuisineType (or do by name of Restaurant?): String,
+  votes: {type: Number, default: 0},
+})
+
 const GroupSchema = new mongoose.Schema ({
  date: { type: String, required: true},
  group name: { type: String, required: true},
- voting: {type: Number, required: enum
-  votes: {
-    name: String
-    vote: Number
-  }}
+ voting: [VoteSchema]
 });
 
 const UserSchema = new mongoose.Schema ({
  name: { type: String, required: true },
  email: { type: String, required: true },
  password: { type: String, required: true },
- dietRestrictions { type: String, required: enum },
+ dietRestrictions { type: [String], required: true },
  group: [GroupSchema]
 });
 
 const AdminSchema = new mongoose.Schema ({
- IsAdmin: { type: Boolean },
+ isAdmin: { type: Boolean },
  group: [GroupSchema]
 });
 

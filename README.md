@@ -68,12 +68,18 @@ I'musing a 3rd party API for this application. The data is already set up to be 
 const GroupSchema = new mongoose.Schema ({
  date: { type: String, required: true},
  group name: { type: String, required: true},
+ voting: {type: Number, required: enum
+  votes: {
+    name: String
+    vote: Number
+  }}
 });
 
 const UserSchema = new mongoose.Schema ({
  name: { type: String, required: true },
  email: { type: String, required: true },
  password: { type: String, required: true },
+ dietRestrictions { type: String, required: enum },
  group: [GroupSchema]
 });
 
@@ -90,4 +96,5 @@ const AdminSchema = new mongoose.Schema ({
 - `POST /api/user/logout` - Logout a user
 - `GET /api/user/group` - Get all users for group (admin only)
 - `PUT /api/user/:userId` - Update a user (user update own, admin can make user an admin)
+- `PUT /api/user/group/vote` - Update with vote cuisine tally
 - `DELETE /api/user/:userId` - Delete user from group

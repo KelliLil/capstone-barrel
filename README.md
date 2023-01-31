@@ -72,7 +72,7 @@ const VoteSchema = new mongoose.Schema({
 
 const GroupSchema = new mongoose.Schema ({
  date: { type: String, required: true},
- group name: { type: String, required: true},
+ groupName: { type: String, required: true},
  voting: [VoteSchema]
 });
 
@@ -81,12 +81,8 @@ const UserSchema = new mongoose.Schema ({
  email: { type: String, required: true },
  password: { type: String, required: true },
  dietRestrictions { type: [String], Use an enum to restrict choices? },
- group: [GroupSchema]
-});
-
-const AdminSchema = new mongoose.Schema ({
- isAdmin: { type: Boolean },
- group: [GroupSchema]
+ groupsJoined: [GroupSchema],
+ groupsAdmins: [GroupSchema]
 });
 ```
 

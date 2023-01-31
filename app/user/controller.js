@@ -12,3 +12,11 @@ mongoose
   .catch((err) => {
     console.log("Error connecting to DB", err);
   });
+
+const controller = {
+  getUsers() {
+    return User.find();
+  },
+};
+
+export default controller;

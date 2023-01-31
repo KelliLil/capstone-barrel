@@ -40,7 +40,7 @@ The idea of Iron Out is an application that will essentially get rid of the need
 
 ### Sample Data
 
-I'musing a 3rd party API for this application. The data is already set up to be read this way as the tech is used in other facets of travel applications.
+I'm using a 3rd party API for this application. The data is already set up to be read this way as the tech is used in other facets of travel applications.
 
 #### Groups
 

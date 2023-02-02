@@ -5,7 +5,7 @@ import User from "./User.js";
 mongoose.set("strictQuery", true);
 
 mongoose
-  .connect(config.getDbConn("test"))
+  .connect(config.getDbConn("user"))
   .then(() => {
     console.log("Connected to DB");
   })

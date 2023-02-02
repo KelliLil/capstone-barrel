@@ -1,21 +1,15 @@
+import { model, Schema } from "mongoose";
+import groupSchema from "./group-schema.js";
 
-
-const UserSchema = new mongoose.Schema ({
+const userSchema = new Schema({
   name: { type: String, required: true },
   email: { type: String, required: true },
   password: { type: String, required: true },
-  dietRestrictions: { type: [String], Use enum to restrict choices? },
-  groupsJoined: [GroupSchema],
-  groupsAdmins: [GroupSchema]
- });
+  dietRestrictions: { type: [String], required: true },
+  groupsJoined: [groupSchema],
+  groupsAdmins: [groupSchema],
 
- const GroupSchema = new mongoose.Schema ({
-  date: { type: String, required: true},
-  groupName: { type: String, required: true},
-  voting: [VoteSchema]
- });
+  versionKey: false,
+});
 
- const VoteSchema = new mongoose.Schema({
-  cuisineType (or do by name of Restaurant?): String,
-  votes: {type: Number, default: 0}
-})
+export default model("User", userSchema);

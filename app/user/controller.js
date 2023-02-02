@@ -17,6 +17,20 @@ const controller = {
   getUsers() {
     return User.find();
   },
+
+  createUser(user) {
+    return User.create(user);
+  },
 };
+
+const newUser = await controller.createUser({
+  name: "Guy Dude",
+  email: "guydude@stuff.com",
+  password: "password",
+  dietRestrictions: ["gluten", "dairy"],
+  groupsJoined: [],
+});
+
+console.log(newUser);
 
 export default controller;

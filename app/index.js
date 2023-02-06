@@ -1,9 +1,5 @@
-import express from "express";
+import initDb from "./db.js";
+import initServer from "./server.js";
 
-const app = express();
-
-app.use(express.json());
-
-app.listen(3000, () => {
-  console.info("Server is running");
-});
+initDb();
+initServer();

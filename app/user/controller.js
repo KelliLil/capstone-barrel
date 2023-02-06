@@ -38,18 +38,29 @@ const controller = {
   createUser(user) {
     return User.create(user);
   },
+
+  updateById(id, updatedName) {
+    return User.findByIdAndUpdate(
+      id,
+      { name: updatedName },
+      {
+        runValidators: true,
+        returnDocument: "after",
+      }
+    );
+  },
 };
 
-const newUser = await controller.createUser({
-  name: "Guy Dude",
-  email: "guydude@stuff.com",
-  password: "password",
-  dietRestrictions: ["gluten", "dairy"],
-  groupsJoined: [],
+// const loggedInUser = await userController.login("john", "123456");
+// console.log(loggedInUser);
+
+const updatedUserName = await controller
+  .updateById("63e11a13a6e0a46655352477", "Jack Donut")
+  .catch((err) => {
+    console.log(err.message);
 });
 
-const foundUser = await controller.getUser("63e11a13a6e0a46655352477");
-console.log(foundUser);
+console.log(updatedUserName);
 
 export default controller;
 

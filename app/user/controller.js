@@ -21,6 +21,12 @@ const controller = {
   getUser(id) {
     return User.findById(id);
   },
+  deleteById(id2Delete) {
+    if (mongoose.Types.ObjectId.isValid(id2Delete)) {
+      return User.findByIdAndDelete(id2Delete);
+    }
+  },
+
     create(username, password) {
       return User.create({ username, password });
     },
@@ -54,13 +60,9 @@ const controller = {
 // const loggedInUser = await userController.login("john", "123456");
 // console.log(loggedInUser);
 
-const updatedUserName = await controller
-  .updateById("63e11a13a6e0a46655352477", "Jack Donut")
-  .catch((err) => {
-    console.log(err.message);
-});
+const deleteUser = await controller.deleteById("63dc172370eb2e920d171059");
 
-console.log(updatedUserName);
+console.log(deleteUser);
 
 export default controller;
 

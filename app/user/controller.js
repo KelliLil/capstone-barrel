@@ -27,6 +27,10 @@ const controller = {
     }
   },
 
+  deleteByUsername(username2Delete) {
+    return User.deleteOne({ username: username2Delete });
+  },
+
     create(username, password) {
       return User.create({ username, password });
     },

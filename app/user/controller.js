@@ -3,14 +3,13 @@ import config from "../config.js";
 import User from "./User.js";
 
 mongoose.set("strictQuery", true);
-
 mongoose
-  .connect(config.getDbConn("user"))
+  .connect(config.dbConn)
   .then(() => {
-    console.log("Connected to DB");
+    console.info("Connected to the database");
   })
   .catch((err) => {
-    console.log("Error connecting to DB", err);
+    console.error("Error connecting to the database", err);
   });
 
 const controller = {
@@ -21,6 +20,7 @@ const controller = {
   getUser(id) {
     return User.findById(id);
   },
+
   deleteById(id2Delete) {
     if (mongoose.Types.ObjectId.isValid(id2Delete)) {
       return User.findByIdAndDelete(id2Delete);
@@ -31,22 +31,13 @@ const controller = {
     return User.deleteOne({ username: username2Delete });
   },
 
-    create(username, password) {
-      return User.create({ username, password });
-    },
-
-    async login(username, password) {
-      const loggedInUser = await User.login(username, password);
-      return loggedInUser;
-    },
-  };
-const controller = {
-  getUsers() {
-    return User.find();
+  create(username, password) {
+    return User.create({ username, password });
   },
 
-  createUser(user) {
-    return User.create(user);
+  async login(username, password) {
+    const loggedInUser = await User.login(username, password);
+    return loggedInUser;
   },
 
   updateById(id, updatedName) {
@@ -64,10 +55,4 @@ const controller = {
 // const loggedInUser = await userController.login("john", "123456");
 // console.log(loggedInUser);
 
-const deleteUser = await controller.deleteById("63dc172370eb2e920d171059");
-
-console.log(deleteUser);
-
 export default controller;
-
-export default userController;

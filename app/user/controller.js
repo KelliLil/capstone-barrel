@@ -13,7 +13,14 @@ mongoose
     console.log("Error connecting to DB", err);
   });
 
-  const userController = {
+const controller = {
+  getUsers() {
+    return User.find();
+  },
+
+  getUser(id) {
+    return User.findById(id);
+  },
     create(username, password) {
       return User.create({ username, password });
     },
@@ -41,7 +48,8 @@ const newUser = await controller.createUser({
   groupsJoined: [],
 });
 
-console.log(newUser);
+const foundUser = await controller.getUser("63e11a13a6e0a46655352477");
+console.log(foundUser);
 
 export default controller;
 

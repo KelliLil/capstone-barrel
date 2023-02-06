@@ -1,6 +1,6 @@
 import { Router } from "express";
-import controller from "./controller.js";
 import mongoose from "mongoose";
+import controller from "./controller.js";
 
 const router = new Router();
 
@@ -48,6 +48,18 @@ router.post("/login", async (req, res) => {
   } else {
     res.status(401).json({ message: "Invalid credentials" });
   }
+});
+
+router.delete("/user/:id", async (req, res) => {
+  const { id } = req.params;
+
+  controller.deleteById(id).then((result) => {
+    if (result.deletedCount) {
+      res.json(result);
+    } else {
+      res.status(404).json({ message: "Student not found" });
+    }
+  });
 });
 
 export default router;

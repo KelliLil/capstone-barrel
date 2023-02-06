@@ -13,6 +13,16 @@ mongoose
     console.log("Error connecting to DB", err);
   });
 
+  const userController = {
+    create(username, password) {
+      return User.create({ username, password });
+    },
+
+    async login(username, password) {
+      const loggedInUser = await User.login(username, password);
+      return loggedInUser;
+    },
+  };
 const controller = {
   getUsers() {
     return User.find();
@@ -34,3 +44,5 @@ const newUser = await controller.createUser({
 console.log(newUser);
 
 export default controller;
+
+export default userController;

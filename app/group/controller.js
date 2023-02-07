@@ -1,13 +1,12 @@
 import mongoose from "mongoose";
 import config from "../config.js";
-import controller from "../user/controller.js";
 import Group from "./Group.js";
 
 mongoose.set("strictQuery", true);
 mongoose
   .connect(config.dbConn)
   .then(() => {
-    console.info("Connected to the database");
+    console.info("Connected to the DB");
   })
   .catch((err) => {
     console.error("Error connecting to the database", err);
@@ -38,7 +37,7 @@ const groupController = {
   },
 };
 
-const newVote = await controller.updateVoteTally({
+const newVote = await groupController.updateVoteTally({
   groupName: "Group 1",
   newVoteTally: {
     voting: 1,

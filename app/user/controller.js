@@ -17,6 +17,8 @@ const controller = {
     return User.find();
   },
 
+  versionKey: false,
+
   getUser(id) {
     return User.findById(id);
   },

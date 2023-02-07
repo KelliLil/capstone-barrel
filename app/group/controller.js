@@ -28,11 +28,13 @@ const groupController = {
   },
 
   async updateVoteTally({ groupName, newVoteTally }) {
-    const foundGroup = await Group.findOneAndUpdate(groupName);
-    if (foundGroup) {
-      foundGroup.voting.push(newVoteTally);
-      return foundGroup.save();
-    }
+    return Group.findOne({ name: "groupName" })
+      .then((group) => {
+        group.updateVoteTally(1);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   },
 };
 

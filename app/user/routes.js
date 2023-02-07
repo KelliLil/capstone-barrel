@@ -50,6 +50,31 @@ router.post("/login", async (req, res) => {
   }
 });
 
+router.put("/:id", async (request, response) => {
+  const incomingContact = request.body;
+
+  let updatedContact;
+
+  if (id) {
+    updatedContact = await controller
+      .updateById(id, incomingContact)
+      .catch((err) => {
+        if (err.message.includes("ID")) {
+          response.status(400).json({ message: err.message });
+        } else if (err.name === "ValidationError" || err.name === "CastError") {
+          response.status(400).json(err.message);
+        } else if (err.path) {
+          response.status(400).json({
+            message: `Invalid request property in request body: ${err.path}`,
+          });
+        } else {
+          response.status(500).json(err);
+        }
+        response.json(updatedContact);
+      });
+  }
+});
+
 router.delete("/user/:id", async (req, res) => {
   const { id } = req.params;
 

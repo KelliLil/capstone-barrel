@@ -10,6 +10,7 @@ export default () => {
   app.use(express.json());
   app.use(decodeUser);
   app.use("/api/users", routes);
+  app.use("/api/groups");
 
   app.use((_, res) => {
     res.status(404).json({ message: "Not found" });

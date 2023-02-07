@@ -56,13 +56,4 @@ const controller = {
   },
 };
 
-const newUser = await User.create({
-  name: "John Doe",
-  email: "mark@west.clm",
-  password: "password",
-  username: "markwest",
-});
-
-console.log(newUser);
-
 export default controller;

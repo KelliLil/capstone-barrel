@@ -13,14 +13,30 @@ mongoose
   });
 
 const controller = {
+  getUsers() {
+    return User.find();
+  },
+
   versionKey: false,
+
+  getUser(id) {
+    return User.findById(id);
+  },
+
+  deleteById(id2Delete) {
+    if (mongoose.Types.ObjectId.isValid(id2Delete)) {
+      return User.findByIdAndDelete(id2Delete);
+    }
+  },
 
   deleteByUsername(username2Delete) {
     return User.deleteOne({ username: username2Delete });
   },
 
-  create(username, password) {
-    return User.create({ username, password });
+  // 'newUser' is an object with the following properties:
+  // name, email, password, username, dietRestrictions
+  create({ newUser }) {
+    return User.create(newUser);
   },
 
   async login(username, password) {
@@ -40,30 +56,13 @@ const controller = {
   },
 };
 
-// const newUser = await controller.create({
-//   name: "Joe Jackson",
-//   password: "password",
-//   email: "joe@joe.com",
-//   username: "joejoe",
-//   dietRestrictions: ["vegan", "gluten-free"],
-//   groupsJoined: [
-//     {
-//       date: 1 / 1 / 2021,
-//       groupName: "Group 1",
-//       voting: [
-//         {
-//           cuisineType: "Italian",
-//           votes: 1,
-//         },
-//       ],
-//     },
-//   ],
-//   isAdmin: true,
-// }).catch;
+const newUser = await User.create({
+  name: "John Doe",
+  email: "mark@west.clm",
+  password: "password",
+  username: "markwest",
+});
 
-// console.log(newUser);
-
-// const loggedInUser = await userController.login("john", "123456");
-// console.log(loggedInUser);
+console.log(newUser);
 
 export default controller;

@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import { model, Schema } from "mongoose";
 import config from "../config.js";
 
-const userSchema = new Schema({
+export const userSchema = new Schema({
   name: { type: String, required: true },
   email: { type: String, required: true },
   password: { type: String, required: true },

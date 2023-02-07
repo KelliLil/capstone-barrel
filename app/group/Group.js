@@ -4,8 +4,6 @@ import voteSchema from "./vote-schema.js";
 
 const adminSchema = new Schema({
   username: { type: String, required: true },
-
-  // TODO: Check if _id needs to be Schema.Types.ObjectId
   _id: { type: Types.ObjectId, required: true },
 });
 

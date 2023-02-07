@@ -1,16 +1,13 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { model, Schema } from "mongoose";
-import groupSchema from "./group-schema.js";
 import config from "../config.js";
 
 const userSchema = new Schema({
   name: { type: String, required: true },
   email: { type: String, required: true },
   password: { type: String, required: true },
-  dietRestrictions: { type: [String], required: true },
-  groupsJoined: [groupSchema],
-  groupsAdmins: [groupSchema],
+  username: { type: String, required: true },
 });
 
 userSchema.pre("save", async function (next) {

@@ -21,6 +21,16 @@ const groupController = {
     return Group.findById(groupId);
   },
 
+  // create({ newGroup }) {
+  //   const user = await User.findOne({ _id: newGroup.admin });
+  //   if (!user) {
+  //     throw new Error("The admin is not a valid user.");
+  //   }
+  //   if (!user.isAdmin) {
+  //     throw new Error("The admin does not have sufficient privileges.");
+  //   }
+  //   return Group.create(newGroup);
+  // }
   create({ newGroup }) {
     // TODO: Validate the admin is a valid user - confirm that the user exists in the user collection
     return Group.create(newGroup);

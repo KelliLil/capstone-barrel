@@ -45,8 +45,6 @@ const groupController = {
     const group = await this.getGroup(groupId);
     if (!group) throw new Error("Item not found");
 
-    // TODO: Before pushing a new vote, check if the user has already voted for this category
-
     // This will be undefined if the vote does not exist
     const voteForCategory = group.votes.find(
       (vote) => vote.cuisineType === incomingVote.cuisineType
@@ -60,6 +58,8 @@ const groupController = {
     return group.save();
   },
 };
+
+// TODO: fix to where a new id for user is not generated
 
 const voteResults = await groupController.updateVoteTally(
   "63e28831c3210f3a9752a80e",

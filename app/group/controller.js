@@ -38,7 +38,6 @@ const groupController = {
 
   // Add a new member to the group
   async updateGroupMembers({ groupName, newMember }) {
-    // TODO: Shorten this to a single query using this.getGroup()
     const groups = await this.getGroups();
     const group2Update = groups.find((group) => group.groupName === groupName);
 
@@ -62,6 +61,15 @@ const groupController = {
       cuisineType: incomingVote.cuisineType,
       voters: [{ _id: incomingVote.memberId, username: incomingVote.username }],
     };
+    if (
+      voteForCategory.voters.find(
+        (voter) => voter._id === incomingVote.memberId
+      )
+    ) {
+      throw new Error(
+        `Member with ID "${incomingVote.memberId}" has already voted`
+      );
+    }
 
     group.votes.push(voteForCategory);
 

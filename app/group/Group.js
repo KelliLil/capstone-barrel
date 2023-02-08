@@ -10,7 +10,7 @@ const groupSchema = new Schema({
   date: { type: Date, required: true },
   groupName: { type: String, required: true },
   members: [newUserSchema],
-  voting: [voteSchema],
+  votes: [voteSchema],
   admin: { type: newUserSchema },
 });
 

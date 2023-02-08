@@ -1,6 +1,11 @@
 import { Schema } from "mongoose";
 
+const voteSchema = new Schema({
+  username: { type: String },
+  _id: { type: String, required: true },
+});
+
 export default new Schema({
-  cuisineType: { Type: String },
-  votes: { type: Number, default: 0 },
+  cuisineType: { type: String, required: true },
+  voters: [voteSchema],
 });

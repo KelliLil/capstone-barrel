@@ -1,18 +1,17 @@
 import { model, Schema, Types } from "mongoose";
-import { userSchema } from "../user/User.js";
 import voteSchema from "./vote-schema.js";
 
-const adminSchema = new Schema({
-  username: { type: String, required: true },
+const newUserSchema = new Schema({
+  username: { type: String },
   _id: { type: Types.ObjectId, required: true },
 });
 
 const groupSchema = new Schema({
   date: { type: Date, required: true },
   groupName: { type: String, required: true },
-  members: [userSchema],
+  members: [newUserSchema],
   voting: [voteSchema],
-  admin: { type: adminSchema },
+  admin: { type: newUserSchema },
 });
 
 export default model("Group", groupSchema);

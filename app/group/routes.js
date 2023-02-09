@@ -20,8 +20,7 @@ router.put("/:groupId/add-member", async (req, res) => {
     newMember
   );
 
-  // TODO: Check for a more specific status code for created
-  return res.status(200).json({ success: true, data: updatedGroup });
+  return res.status(201).json({ success: true, data: updatedGroup });
 });
 
 router.put("/:groupId/vote", async (req, res) => {

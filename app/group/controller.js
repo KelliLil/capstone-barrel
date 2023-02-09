@@ -15,9 +15,10 @@ const groupController = {
   },
 
   // Add a new member to the group
-  async updateGroupMembers({ groupName, newMember }) {
-    const groups = await this.getGroups();
-    const group2Update = groups.find((group) => group.groupName === groupName);
+  async addNewMember2Group(groupId, newMember) {
+    const group2Update = await Group.findById(groupId);
+
+    if (!group2Update) throw new Error("Group not found");
 
     // TODO: Validate the new member is a valid user - confirm that the user exists in the user collection
     // TODO: Validate that the new member is not already in the group

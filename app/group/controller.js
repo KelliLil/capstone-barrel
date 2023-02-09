@@ -54,37 +54,53 @@ const groupController = {
     const group = await this.getGroup(groupId);
     if (!group) throw new Error("Item not found");
 
-    // This will be undefined if the vote does not exist
-    const voteForCategory = group.votes.find(
+    let votesCategory = group.votes.find(
       (vote) => vote.cuisineType === incomingVote.cuisineType
-    ) || {
+    );
+
+    // If the votesCategory does not exist create it
+    if (!votesCategory) {
+      votesCategory = {
       cuisineType: incomingVote.cuisineType,
-      voters: [{ _id: incomingVote.memberId, username: incomingVote.username }],
+        voters: [],
     };
-    if (
-      voteForCategory.voters.find(
-        (voter) => voter._id === incomingVote.memberId
-      )
-    ) {
-      throw new Error(
-        `Member with ID "${incomingVote.memberId}" has already voted`
-      );
+
+      group.votes.push(votesCategory);
     }
 
-    group.votes.push(voteForCategory);
+    // Otherwise, update the existing votesCategory
+    const existingVoter = votesCategory.voters.find(
+      (voter) => voter._id.toString() === incomingVote.memberId
+      );
+
+    if (existingVoter) {
+      throw new Error("You have already voted for this category");
+    }
+
+    votesCategory.voters.push(incomingVote);
 
     return group.save();
   },
 };
 
-// TODO: fix to where a new id for user is not generated
+// const newGroup = await groupController.createNewGroup({
+//   newGroup: {
+//     date: new Date("01-01-2040"),
+//     groupName: "Test Group",
+//     admin: {
+//       _id: "63e274b8e571be5c8417ddb1",
+//     },
+//   },
+// });
+
+// console.log(newGroup);
 
 const voteResults = await groupController.updateVoteTally(
-  "63e28831c3210f3a9752a80e",
+  "63e50a52f211b00b05530d2d",
   {
     cuisineType: "Mexican",
-    memberId: "63e2a7e7b365f40fbce2acb5",
-    username: "Peter Pan",
+    _id: "63e11a13a6e0a46655352477",
+    username: "Someone else",
   }
 );
 
